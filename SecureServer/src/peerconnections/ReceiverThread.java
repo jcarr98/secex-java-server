@@ -24,7 +24,7 @@ public class ReceiverThread extends Thread {
     }
 
     public void run() {
-        while(u2.stillReceiving()) {
+        while(u1.stillReceiving()) {
             String line = u2.readString();
             u1.send(line);
         }

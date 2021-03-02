@@ -122,11 +122,8 @@ public class SecureServer {
         byte[] safeConfirm = rsa.encrypt(confirmation, user.getKey());
         user.send(safeConfirm);
 
-        // Create AES key for communication between users
-        byte[] secret = genKey();
-
         // Encrypt key and send to user
-        byte[] safeSecret = rsa.encrypt(secret, user.getKey());
+        byte[] safeSecret = rsa.encrypt(server.getKey(), user.getKey());
         user.send(safeSecret);
 
         // Wait for received confirmation and username
@@ -173,28 +170,6 @@ public class SecureServer {
         else {
             return uString;
         }
-    }
-
-    private byte[] genKey() {
-        // Create key generator
-        KeyGenerator keyGen;
-        try {
-            keyGen = KeyGenerator.getInstance("AES");
-        }
-        catch(GeneralSecurityException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        // Create random byte generator
-        SecureRandom r = new SecureRandom();
-
-        // Initialize key generator
-        keyGen.init(256, r);
-
-        SecretKey key = keyGen.generateKey();
-
-        return key.getEncoded();
     }
 
     private PublicKey keyExchange(User user) {

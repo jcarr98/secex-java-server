@@ -5,11 +5,9 @@ import encryption.AES;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 
 public class Server implements Runnable {
@@ -20,11 +18,16 @@ public class Server implements Runnable {
     public Server() {
         numUsers = 0;
 
-        // TODO Initiate aes
+        // Initiate aes
+        aes = new AES();
     }
 
     public int userCount() {
         return numUsers;
+    }
+
+    public byte[] getKey() {
+        return aes.getKey();
     }
 
     /**
