@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SecureServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SecureServer_jar</output-path>
+    <root id="archive" name="SecureServer.jar">
+      <element id="module-output" name="SecureServer" />
+    </root>
+  </artifact>
+</component>

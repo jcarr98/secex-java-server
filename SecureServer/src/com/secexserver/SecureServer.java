@@ -11,6 +11,7 @@ import java.net.ServerSocket;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.HashMap;
 
@@ -209,7 +210,7 @@ public class SecureServer {
         Socket sock;
         while(true) {
             // Manage thread pool
-            var pool = Executors.newFixedThreadPool(20);
+            ExecutorService pool = Executors.newFixedThreadPool(20);
 
             // Wait for connection
             try {
